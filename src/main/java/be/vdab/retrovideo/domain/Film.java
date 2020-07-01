@@ -12,7 +12,7 @@ public class Film {
     private final long id;
     private final long genreId;
     @NotBlank
-    private final String title;
+    private final String titel;
     @PositiveOrZero
     private final long voorraad;
     @PositiveOrZero
@@ -21,14 +21,16 @@ public class Film {
     @PositiveOrZero
     @NumberFormat(pattern = "0.00")
     private final BigDecimal prijs;
+    private final boolean verwijderen;
 
-    public Film(long id, long genreId, @NotBlank String title, @PositiveOrZero long voorraad, @PositiveOrZero long gereserveerd, @NotNull @PositiveOrZero BigDecimal prijs) {
+    public Film(long id, long genreId, @NotBlank String titel, @PositiveOrZero long voorraad, @PositiveOrZero long gereserveerd, @NotNull @PositiveOrZero BigDecimal prijs) {
         this.id = id;
         this.genreId = genreId;
-        this.title = title;
+        this.titel = titel;
         this.voorraad = voorraad;
         this.gereserveerd = gereserveerd;
         this.prijs = prijs;
+        this.verwijderen = false;
     }
 
     public long getId() {
@@ -39,8 +41,8 @@ public class Film {
         return genreId;
     }
 
-    public String getTitle() {
-        return title;
+    public String getTitel() {
+        return titel;
     }
 
     public long getVoorraad() {
@@ -53,5 +55,13 @@ public class Film {
 
     public BigDecimal getPrijs() {
         return prijs;
+    }
+
+    public boolean isVerwijderen() {
+        return verwijderen;
+    }
+
+    public String getIdString() {
+        return ( id + "" );
     }
 }

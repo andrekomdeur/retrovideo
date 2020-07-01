@@ -3,12 +3,14 @@ import be.vdab.retrovideo.domain.Genre;
 import org.springframework.dao.IncorrectResultSizeDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
 /**
  * @Author Andre Komdeur
  */
+@Repository
 public class JdbcGenreRepository implements GenreRepository {
     private final JdbcTemplate template;
     private final RowMapper<Genre> genreMapper =

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<!-- @Author Andre Komdeur -->
+<html lang="nl" xmlns:th="http://www.thymeleaf.org">
+	<head th:replace="fragments::head(title='Videotheek RetroVideo')"></head>
+	<body>
+		<nav th:replace="fragments::menu"></nav>
+		<h1><a th:text="Mandje"></a></h1>
+		<form method="post" th:action="@{/mandje/verwijderen}">
+			<ul th:unless="${#lists.isEmpty(filmsInMandje)}" class="zebra">
+				<li>
+					<span th:text="Film"></span>
+					<span th:text="Prijs"></span>
+					<button>Verwijderen</button>
+				</li>
+				<li th:each="film:${filmsInMandje}" th:object="${film}">
+					<span th:text="*{titel}"></span> &euro;
+					<span th:text="*{prijs}"></span>
+					<input type="checkbox" name="id"	 th:value="*{id}"/>
+					<!--					<input type="checkbox" th:field="*{verwijderen}">
+															<a th:href="@{/pizzas/{id}(id=*{id})}">detail</a>
+										-->
+				</li>
+			</ul>
+		</form>
+	</body>
+</html>

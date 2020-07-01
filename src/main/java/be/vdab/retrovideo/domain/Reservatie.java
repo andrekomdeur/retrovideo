@@ -2,7 +2,7 @@ package be.vdab.retrovideo.domain;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.PastOrPresent;
-import java.time.LocalDate;
+import java.sql.Timestamp;
 /**
  * @Author Andre Komdeur
  */
@@ -10,10 +10,10 @@ public class Reservatie {
     private final Long klantId;
     private final Long filmId;
     @PastOrPresent
-    @DateTimeFormat(style = "S-")
-    private final LocalDate reservatie;
+    @DateTimeFormat
+    private final Timestamp reservatie;
 
-    public Reservatie(Long klantId, Long filmId, @PastOrPresent LocalDate reservatie) {
+    public Reservatie(Long klantId, Long filmId, Timestamp reservatie) {
         this.klantId = klantId;
         this.filmId = filmId;
         this.reservatie = reservatie;
@@ -27,7 +27,7 @@ public class Reservatie {
         return filmId;
     }
 
-    public LocalDate getReservatie() {
+    public Timestamp getReservatie() {
         return reservatie;
     }
 }
