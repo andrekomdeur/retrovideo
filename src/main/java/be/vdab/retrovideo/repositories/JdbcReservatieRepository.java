@@ -19,7 +19,7 @@ public class JdbcReservatieRepository implements ReservatieRepository{
     private final RowMapper<Reservatie> reservatieMapper =
             (result, rowNum) -> new Reservatie(
                     result.getLong("klantid"),
-                    result.getLong("genreid"),
+                    result.getLong("filmid"),
                     result.getTimestamp("reservatie"));
 
     public JdbcReservatieRepository(JdbcTemplate template) {
@@ -32,7 +32,7 @@ public class JdbcReservatieRepository implements ReservatieRepository{
         Map<String, Object > kolomWaarden = new HashMap<>();
         kolomWaarden.put("klantid",reservatie.getKlantId());
         kolomWaarden.put("filmid",reservatie.getFilmId());
-        kolomWaarden.put("reservatie",reservatie.getReservatie());
+        kolomWaarden.put("reservatie",reservatie.getReservatieMoment());
         return insert.execute(kolomWaarden);
     }
 
@@ -48,7 +48,7 @@ public class JdbcReservatieRepository implements ReservatieRepository{
     @Override
     public List<Reservatie> findAll() {
         try {
-            String sql = "select * from reservaties order by titel";
+            String sql = "select * from reservaties";
             return template.query(sql, reservatieMapper);
         } catch (IncorrectResultSizeDataAccessException ex) {
             return null;

@@ -54,7 +54,7 @@ public class KlantController {
         } */
         ModelAndView modelAndView = new ModelAndView("rapport");
 
-        List<String> mislukkingen = new ArrayList<>();;
+        List<String> mislukkingen = new ArrayList<>();
         Mandje mandje = new Mandje();
         mandje.cookieNaarMandje(koekje);
         mislukkingen = mandje.reserveren(id,reservatieService,filmService);

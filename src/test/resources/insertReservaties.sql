@@ -1,3 +1,5 @@
-insert into reservaties(klantid, filmid, reservatie) VALUES (1,1,20200101142856);
-insert into reservaties(klantid, filmid, reservatie) VALUES (2,1,20200101142857);
-insert into reservaties(klantid, filmid, reservatie) VALUES (3,1,20200101142858);
+insert into genres(id, naam ) VALUES (99,'Test');
+insert into films(genreid,titel,voorraad,gereserveerd,prijs) VALUES (99,'Test',5,1,4);
+insert into films(genreid,titel,voorraad,gereserveerd,prijs) VALUES (99,'Test2',5,1,4);
+insert into klanten(familienaam,voornaam,straatNummer,postcode,gemeente) VALUES ('Test','Henk','Testlaan 1','3110','Testplaats');
+

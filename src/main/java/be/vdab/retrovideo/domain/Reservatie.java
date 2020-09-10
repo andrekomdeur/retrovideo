@@ -11,12 +11,12 @@ public class Reservatie {
     private final Long filmId;
     @PastOrPresent
     @DateTimeFormat
-    private final Timestamp reservatie;
+    private final Timestamp reservatieMoment;
 
-    public Reservatie(Long klantId, Long filmId, Timestamp reservatie) {
+    public Reservatie(Long klantId, Long filmId, Timestamp reservatieMoment) {
         this.klantId = klantId;
         this.filmId = filmId;
-        this.reservatie = reservatie;
+        this.reservatieMoment = reservatieMoment;
     }
 
     public Long getKlantId() {
@@ -27,7 +27,7 @@ public class Reservatie {
         return filmId;
     }
 
-    public Timestamp getReservatie() {
-        return reservatie;
+    public Timestamp getReservatieMoment() {
+        return reservatieMoment;
     }
 }
