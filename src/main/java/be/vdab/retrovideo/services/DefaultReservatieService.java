@@ -26,5 +26,9 @@ private final ReservatieRepository repository;
         return repository.findByKlantId(klantId);
     }
 
+    @Override
+    public int create(Reservatie reservatie ) {
+        return repository.create(reservatie);
+    }
 
 }

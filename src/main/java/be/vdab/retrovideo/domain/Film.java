@@ -56,12 +56,5 @@ public class Film {
     public BigDecimal getPrijs() {
         return prijs;
     }
-
-    public boolean isVerwijderen() {
-        return verwijderen;
-    }
-
-    public String getIdString() {
-        return ( id + "" );
-    }
 }
+

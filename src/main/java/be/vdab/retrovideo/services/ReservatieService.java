@@ -8,4 +8,5 @@ import java.util.List;
 public interface ReservatieService {
     List<Reservatie> findAll();
     List<Reservatie> findByKlantId(long klantId);
+    int create(Reservatie reservatie);
 }

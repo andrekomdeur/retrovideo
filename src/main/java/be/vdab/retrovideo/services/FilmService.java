@@ -10,4 +10,5 @@ public interface FilmService {
     List<Film> findAll();
     List<Film> findByGenre(long genreId);
     Optional<Film> findById(long id);
+    void update(Film film);
 }

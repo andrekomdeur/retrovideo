@@ -7,6 +7,7 @@ import java.util.Optional;
  * @Author Andre Komdeur
  */
 public interface FilmRepository {
+    void update(Film film);
     List<Film> findAll();
     List<Film> findByGenre(Long genreId);
     Optional<Film> findById(long id);

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<!-- @Author Andre Komdeur -->
+<<html lang="nl" xmlns:th="http://www.thymeleaf.org">
+	<head th:replace="fragments::head(title='Klanten')"></head>
+	<body>
+<!--		<script th:src="@{/js/preventDoubleSubmit.js}" defer></script> -->
+		<nav th:replace="fragments::menu"></nav>
+		<h1>Mandje</h1>
+		<form th:object="${ZoekenForm}" method="post" th:action="@{/zoekdeklanten/zoeken}" >
+			<label>Familienaam bevat
+				<input th:field="*{part}"
+						 oninput="this.value=this.value.toLowerCase()"
+						 autofocus required></label>
+			<button>Zoeken</button>
+		</form>
+		<table class="left">
+			<thead>
+			<tr>
+				<th>Naam</th>
+				<th>Straat - Huisnummer</th>
+				<th>Postcode</th>
+				<th>Gemeente</th>
+			</tr>
+			</thead>
+			<tbody th:unless="${#lists.isEmpty(zoekDeKlanten)}" >
+			<tr th:each="klant:${zoekDeKlanten.klanten}" th:object="${klant}">
+				<td><a th:href="@{/klant/{id}(id=*{id})}">
+					<span th:text="*{familieNaam}"></span></a></td>
+				<td><span th:text="*{straatNummer}"></span></td>
+				<td><span th:text="*{postcode}"></span></td>
+				<td><span th:text="*{gemeente}"></span></td>
+			</tr>
+			</tbody>
+		</table>
+
+	</body>
+</html>

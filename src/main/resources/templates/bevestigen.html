@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<!-- @Author Andre Komdeur -->
+<html lang="nl" xmlns:th="http://www.thymeleaf.org">
+	<head th:replace="fragments::head(title='Videotheek RetroVideo')"></head>
+	<body  th:object="${klant}">
+		<nav th:replace="fragments::menu"></nav>
+		<h1><a th:text="Bevestigen"></a></h1>
+		<div>
+				<span th:text="${aantal}"></span>
+				film(s) voor
+				<span th:text="*{voorNaam}"></span>
+				<span th:text="*{familieNaam}"></span>
+				.
+			</div>
+			<form method="post" th:action="@{/klant/reserveren}">
+				<input type="hidden" name="id" th:value="*{id}"/>
+			<button>Bevestigen</button>
+		</form>
+	</body>
+</html>

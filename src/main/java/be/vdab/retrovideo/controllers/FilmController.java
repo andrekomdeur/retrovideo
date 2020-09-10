@@ -2,22 +2,21 @@ package be.vdab.retrovideo.controllers;
 import be.vdab.retrovideo.services.FilmService;
 import be.vdab.retrovideo.sessions.Mandje;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 /**
  * @Author Andre Komdeur
  */
 @Controller
 @RequestMapping("film")
 class FilmController {
-    private final Mandje mandje;
+    private static final int EEN_JAAR_IN_SECONDEN = 31_536_000;
     private final FilmService filmService;
 
-    public FilmController(Mandje mandje, FilmService filmService) {
-        this.mandje = mandje;
+    public FilmController(FilmService filmService) {
         this.filmService = filmService;
     }
     @GetMapping("{id}")
@@ -29,8 +28,23 @@ class FilmController {
         return modelAndView;
     }
     @PostMapping("toevoegen")
-    public String voegToe(long id) {
+    public ModelAndView voegToe(long id,
+                          @CookieValue(name = "mandje", required = false) String koekje,
+                          HttpServletResponse response) {
+        Mandje mandje = new Mandje();
+        if (koekje != null) mandje.cookieNaarMandje(koekje);
+//      verwijderen
+        Cookie cookie = new Cookie("mandje","");
+        cookie.setMaxAge(0);
+        cookie.setPath("/");
+        response.addCookie(cookie);
+
         mandje.voegToe(id);
-        return "redirect:/mandje";
+        cookie = new Cookie("mandje", mandje.mandjeNaarCookie());
+        cookie.setMaxAge(EEN_JAAR_IN_SECONDEN);
+        cookie.setPath("/");
+        response.addCookie(cookie);
+
+        return new ModelAndView("redirect:/mandje");
     }
 }

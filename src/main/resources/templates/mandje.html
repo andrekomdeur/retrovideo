@@ -6,6 +6,27 @@
 		<nav th:replace="fragments::menu"></nav>
 		<h1><a th:text="Mandje"></a></h1>
 		<form method="post" th:action="@{/mandje/verwijderen}">
+			<table >
+				<thead>
+				<tr>
+					<th class="left">Film</th>
+					<th class="right">Prijs</th>
+					<th class="center"><button>Verwijderen</button></th>
+				</tr>
+				</thead>
+				<tbody th:unless="${#lists.isEmpty(filmsInMandje)}" >
+				<tr th:each="film:${filmsInMandje}" th:object="${film}">
+					<td class="left"><span th:text="*{titel}"></span></td>
+					<td class="right">&euro;<span th:text="*{prijs}"></span></td>
+					<td class="center"><input type="checkbox" name="id"	 th:value="*{id}"/></td>
+				</tr>
+				</tbody>
+			</table>
+		</form>
+	</body>
+</html>
+<!--
+		<form method="post" th:action="@{/mandje/verwijderen}">
 			<ul th:unless="${#lists.isEmpty(filmsInMandje)}" class="zebra">
 				<li>
 					<span th:text="Film"></span>
@@ -16,11 +37,7 @@
 					<span th:text="*{titel}"></span> &euro;
 					<span th:text="*{prijs}"></span>
 					<input type="checkbox" name="id"	 th:value="*{id}"/>
-					<!--					<input type="checkbox" th:field="*{verwijderen}">
-															<a th:href="@{/pizzas/{id}(id=*{id})}">detail</a>
-										-->
-				</li>
-			</ul>
-		</form>
-	</body>
-</html>
+</li>
+</ul>
+</form>
+-->

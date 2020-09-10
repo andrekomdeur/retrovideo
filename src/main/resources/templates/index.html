@@ -2,8 +2,8 @@
 <!-- @Author Andre Komdeur -->
 <html lang="nl" xmlns:th="http://www.thymeleaf.org">
 	<head th:replace="fragments::head(title='Videotheek RetroVideo')"></head>
-	<body>
-		<nav th:replace="fragments::menu"></nav>
+	<body class="fullwidth">
+		<nav th:replace="fragments::short"></nav>
 		<h1>Genres</h1>
 		<ul class="genres">
 			<li th:each="genre:${genres}" th:object="${genre}">
@@ -15,7 +15,7 @@
 		<div class="films"
 				th:unless="${#lists.isEmpty(films)}"
 				th:each="film:${films}" th:object="${film}">
-			<a  th:href="@{/film/{id}(id=*{id})}">
+			<a  th:href="@{/film/{id}(id=*{id})}" class="films">
 				<img th:src="@{/images/{id}.jpg(id=*{id})}" th:alt="*{id}"/>
 			</a>
 		</div>
