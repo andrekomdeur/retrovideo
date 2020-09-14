@@ -11,7 +11,7 @@ import java.util.Optional;
  * @Author Andre Komdeur
  */
 @Repository
-public class JdbcKlantRepository implements KlantRepository{
+public class JdbcKlantRepository implements KlantRepository {
     private final JdbcTemplate template;
     private final RowMapper<Klant> klantMapper =
             (result, rowNum) -> new Klant(
@@ -35,6 +35,7 @@ public class JdbcKlantRepository implements KlantRepository{
             return Optional.empty();
         }
     }
+
     @Override
     public List<Klant> findAll() {
         try {
@@ -44,11 +45,12 @@ public class JdbcKlantRepository implements KlantRepository{
             return null;
         }
     }
+
     @Override
-    public List<Klant> findPart( String part) {
-            List<Klant> lijstje;
-            String sql = "select * from klanten where familienaam like "
-                    + "\'%" + part + "%\'" + " order by familienaam";
+    public List<Klant> findPart(String part) {
+        List<Klant> lijstje;
+        String sql = "select * from klanten where familienaam like "
+                + "\'%" + part + "%\'" + " order by familienaam";
         lijstje = template.query(sql, klantMapper);
         return lijstje;
     }

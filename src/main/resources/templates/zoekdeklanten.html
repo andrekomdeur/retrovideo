@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <!-- @Author Andre Komdeur -->
-<<html lang="nl" xmlns:th="http://www.thymeleaf.org">
-	<head th:replace="fragments::head(title='Klanten')"></head>
+<html lang="nl" xmlns:th="http://www.thymeleaf.org">
+	<head th:replace="fragments::head(title='Videotheek RetroVideo')"></head>
 	<body>
-<!--		<script th:src="@{/js/preventDoubleSubmit.js}" defer></script> -->
 		<nav th:replace="fragments::menu"></nav>
-		<h1>Mandje</h1>
-		<form th:object="${ZoekenForm}" method="post" th:action="@{/zoekdeklanten/zoeken}" >
+		<h1><a th:text="Klanten"></a></h1>
+		<form th:object="${ZoekenForm}" method="post" th:action="@{/zoekdeklanten/zoeken}">
 			<label>Familienaam bevat
 				<input th:field="*{part}"
 						 oninput="this.value=this.value.toLowerCase()"

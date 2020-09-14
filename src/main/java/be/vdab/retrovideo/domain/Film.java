@@ -16,7 +16,7 @@ public class Film {
     @PositiveOrZero
     private final long voorraad;
     @PositiveOrZero
-    private final  long gereserveerd;
+    private final long gereserveerd;
     @NotNull
     @PositiveOrZero
     @NumberFormat(pattern = "0.00")

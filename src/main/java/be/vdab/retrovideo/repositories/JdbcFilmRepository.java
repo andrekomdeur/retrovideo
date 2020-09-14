@@ -12,7 +12,7 @@ import java.util.Optional;
  * @Author Andre Komdeur
  */
 @Repository
-public class JdbcFilmRepository implements FilmRepository{
+public class JdbcFilmRepository implements FilmRepository {
     private final JdbcTemplate template;
     private final RowMapper<Film> filmMapper =
             (result, rowNum) -> new Film(
@@ -47,6 +47,7 @@ public class JdbcFilmRepository implements FilmRepository{
             return Optional.empty();
         }
     }
+
     @Override
     public List<Film> findByGenre(Long genreId) {
         try {
@@ -56,6 +57,7 @@ public class JdbcFilmRepository implements FilmRepository{
             return null;
         }
     }
+
     @Override
     public List<Film> findAll() {
         try {

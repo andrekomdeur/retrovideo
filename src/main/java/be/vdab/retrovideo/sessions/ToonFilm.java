@@ -13,8 +13,4 @@ public class ToonFilm implements Serializable {
 
     public ToonFilm() {
     }
-    public void getFilm(long id ){
-
-    }
-
 }

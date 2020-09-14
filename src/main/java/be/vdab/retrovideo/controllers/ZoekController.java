@@ -34,6 +34,5 @@ public class ZoekController {
         }
         zoekDeKlanten.zoeken(form.getPart());
         return new ModelAndView("redirect:/zoekdeklanten/show");
-//                , zoekDeKlanten.zoeken(form.getPart()))
     }
 }

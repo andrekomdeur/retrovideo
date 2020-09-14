@@ -24,9 +24,7 @@ public class ZoekDeKlanten implements Serializable {
         klanten = klantService.findPart(part);
     }
 
-    public KlantService getKlantService() {
-        return klantService;
-    }
+ //   public KlantService getKlantService() {        return klantService; }
 
     public List<Klant> getKlanten() {
         return klanten;

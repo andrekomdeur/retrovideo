@@ -21,6 +21,7 @@ public class JdbcGenreRepository implements GenreRepository {
     public JdbcGenreRepository(JdbcTemplate template) {
         this.template = template;
     }
+
     @Override
     public Optional<Genre> findById(long id) {
         try {
@@ -30,6 +31,7 @@ public class JdbcGenreRepository implements GenreRepository {
             return Optional.empty();
         }
     }
+
     @Override
     public List<Genre> findAll() {
         try {

@@ -24,8 +24,8 @@ public class Genre {
     public String getNaam() {
         return naam;
     }
+
     public Set<Film> getFilms() {
         return Collections.unmodifiableSet(films);
     }
-
 }

@@ -16,23 +16,22 @@ import java.util.stream.Collectors;
 /**
  * @Author Andre Komdeur
  */
-
 @Controller
 @RequestMapping("mandje")
 public class MandjeController {
     private static final int EEN_JAAR_IN_SECONDEN = 31_536_000;
     private final FilmService filmService;
 
-    public MandjeController( FilmService filmService) {
+    public MandjeController(FilmService filmService) {
         this.filmService = filmService;
     }
+
     @GetMapping
-    public ModelAndView toonMandje( @CookieValue(name = "mandje", required = false) String koekje) {
+    public ModelAndView toonMandje(@CookieValue(name = "mandje", required = false) String koekje) {
         Mandje mandje = new Mandje();
         if (koekje != null) mandje.cookieNaarMandje(koekje);
         List<Film> filmsInMandje = filmService.findAll();
         ModelAndView modelAndView = new ModelAndView("mandje");
-//                .addObject("filmsInMandje", filmsInMandje);
         if (mandje.isGevuld()) {
             modelAndView.addObject("filmsInMandje",
                     filmsInMandje.stream().filter(film -> mandje.bevat(film.getId()))
@@ -40,15 +39,16 @@ public class MandjeController {
         }
         return modelAndView;
     }
+
     @PostMapping("verwijderen")
     public ModelAndView verwijderen(long[] id,
-                                    @CookieValue(name = "mandje", required = false) String koekje,
+                                    @CookieValue(name = "mandje",
+                                            required = false) String koekje,
                                     HttpServletResponse response) {
         Mandje mandje = new Mandje();
         if (koekje != null) mandje.cookieNaarMandje(koekje);
         if (id != null) {
-
-            Cookie cookie = new Cookie("mandje","");
+            Cookie cookie = new Cookie("mandje", "");
             cookie.setMaxAge(0);
             cookie.setPath("/");
             response.addCookie(cookie);

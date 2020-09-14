@@ -47,11 +47,9 @@ public class KlantController {
     }
     @PostMapping("reserveren")
     public ModelAndView reserveren(long id,
-                                   @CookieValue(name = "mandje", required = false) String koekje, HttpServletResponse response)
-                           /* , Errors errors , RedirectAttributes redirect ) */{
-/*        if (errors.hasErrors()) {
-            return "index";
-        } */
+           @CookieValue(name = "mandje",
+                        required = false) String koekje,
+           HttpServletResponse response) {
         ModelAndView modelAndView = new ModelAndView("rapport");
 
         List<String> mislukkingen = new ArrayList<>();

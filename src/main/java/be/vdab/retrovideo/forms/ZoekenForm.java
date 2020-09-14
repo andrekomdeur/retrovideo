@@ -6,6 +6,7 @@ import javax.validation.constraints.NotNull;
 public class ZoekenForm {
     @NotNull
     private final String part;
+
     public ZoekenForm(@NotNull String part) {
         this.part = part;
     }
@@ -13,5 +14,4 @@ public class ZoekenForm {
     public String getPart() {
         return part;
     }
-
 }

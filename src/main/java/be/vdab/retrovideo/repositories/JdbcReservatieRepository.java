@@ -13,7 +13,7 @@ import java.util.Map;
  * @Author Andre Komdeur
  */
 @Repository
-public class JdbcReservatieRepository implements ReservatieRepository{
+public class JdbcReservatieRepository implements ReservatieRepository {
     private final SimpleJdbcInsert insert;
     private final JdbcTemplate template;
     private final RowMapper<Reservatie> reservatieMapper =
@@ -27,12 +27,13 @@ public class JdbcReservatieRepository implements ReservatieRepository{
         this.insert = new SimpleJdbcInsert(template);
         insert.withTableName("reservaties");
     }
+
     @Override
     public int create(Reservatie reservatie) {
-        Map<String, Object > kolomWaarden = new HashMap<>();
-        kolomWaarden.put("klantid",reservatie.getKlantId());
-        kolomWaarden.put("filmid",reservatie.getFilmId());
-        kolomWaarden.put("reservatie",reservatie.getReservatieMoment());
+        Map<String, Object> kolomWaarden = new HashMap<>();
+        kolomWaarden.put("klantid", reservatie.getKlantId());
+        kolomWaarden.put("filmid", reservatie.getFilmId());
+        kolomWaarden.put("reservatie", reservatie.getReservatieMoment());
         return insert.execute(kolomWaarden);
     }
 
@@ -45,6 +46,7 @@ public class JdbcReservatieRepository implements ReservatieRepository{
             return null;
         }
     }
+
     @Override
     public List<Reservatie> findAll() {
         try {
@@ -54,5 +56,4 @@ public class JdbcReservatieRepository implements ReservatieRepository{
             return null;
         }
     }
-
 }
